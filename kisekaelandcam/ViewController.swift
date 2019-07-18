@@ -84,9 +84,13 @@ class ViewController: UIViewController {
         // 指定したAVCaptureSessionでプレビューレイヤを初期化
         self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.kisekaeLayer = CALayer()
+        // let water_image = UIImage(named: "water")!
         self.kisekaeLayer?.frame = self.view.bounds
+        // self.kisekaeLayer?.frame.size = water_image.size
+        // self.kisekaeLayer?.frame.size = self.view.frame.size
         self.kisekaeLayer?.contents = UIImage(named: "water")?.cgImage
-        
+        self.kisekaeLayer?.transform = CATransform3DMakeScale(0.045, 0.045, 1);
+        // self.kisekaeLayer?.contents = water_image
         // プレビューレイヤが、カメラのキャプチャーを縦横比を維持した状態で、表示するように設定
         self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         // プレビューレイヤの表示の向きを設定
@@ -139,7 +143,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             // Data型をUIImageオブジェクトに変換
-            let uiImage = UIImage(data:imageData)?.composite(image: UIImage(named:"water")!)
+            let uiImage = UIImage(data:imageData)?.composite(image: (UIImage(named:"water")?.scaleImage(scaleSize: 1))!)
             
             // 写真ライブラリに画像を保存
             UIImageWriteToSavedPhotosAlbum(uiImage!, nil,nil,nil)
@@ -165,6 +169,18 @@ extension UIImage {
         UIGraphicsEndImageContext()
         
         return image
+    }
+    func reSizeImage(reSize:CGSize)->UIImage {
+        //UIGraphicsBeginImageContext(reSize);
+        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
+        self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height));
+        let reSizeImage:UIImage! = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return reSizeImage;
+    }
+    func scaleImage(scaleSize:CGFloat)->UIImage {
+        let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
+        return reSizeImage(reSize: reSize)
     }
 }
 

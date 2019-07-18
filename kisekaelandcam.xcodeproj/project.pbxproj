@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		558BEAB122E01995003E8E2F /* Seven_Twenty.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 558BEAB022E01994003E8E2F /* Seven_Twenty.mp3 */; };
 		750C25F622D710EA00F0D36B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750C25F522D710EA00F0D36B /* AppDelegate.swift */; };
 		750C25F822D710EA00F0D36B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750C25F722D710EA00F0D36B /* ViewController.swift */; };
 		750C25FB22D710EA00F0D36B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750C25F922D710EA00F0D36B /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		558BEAB022E01994003E8E2F /* Seven_Twenty.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Seven_Twenty.mp3; sourceTree = "<group>"; };
 		750C25F222D710EA00F0D36B /* kisekaelandcam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kisekaelandcam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		750C25F522D710EA00F0D36B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		750C25F722D710EA00F0D36B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				750C25F522D710EA00F0D36B /* AppDelegate.swift */,
+				558BEAB022E01994003E8E2F /* Seven_Twenty.mp3 */,
 				750C25F722D710EA00F0D36B /* ViewController.swift */,
 				750C25F922D710EA00F0D36B /* Main.storyboard */,
 				750C25FC22D710F100F0D36B /* Assets.xcassets */,
@@ -123,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				750C260022D710F100F0D36B /* LaunchScreen.storyboard in Resources */,
+				558BEAB122E01995003E8E2F /* Seven_Twenty.mp3 in Resources */,
 				750C25FD22D710F100F0D36B /* Assets.xcassets in Resources */,
 				750C25FB22D710EA00F0D36B /* Main.storyboard in Resources */,
 			);

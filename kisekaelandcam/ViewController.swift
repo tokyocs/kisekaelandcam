@@ -13,6 +13,9 @@ import AVFoundation
 
 
 class ViewController: UIViewController {
+ 
+    var audioPlayer: AVAudioPlayer!
+
     
     @IBOutlet weak var cameraButton: UIButton!
     var captureSession = AVCaptureSession()
@@ -127,6 +130,7 @@ class ViewController: UIViewController {
         setupInputOutput()
         setupPreviewLayer()
         captureSession.startRunning()
+        playSound(name: "Seven_Twenty")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -186,3 +190,23 @@ extension UIImage {
 
 
 
+extension ViewController: AVAudioPlayerDelegate {
+    func playSound(name: String) {
+        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
+            print("音源ファイルが見つかりません")
+            return
+        }
+        
+        do {
+            // AVAudioPlayerのインスタンス化
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            
+            // AVAudioPlayerのデリゲートをセット
+            audioPlayer.delegate = self
+            
+            // 音声の再生
+            audioPlayer.play()
+        } catch {
+        }
+    }
+}

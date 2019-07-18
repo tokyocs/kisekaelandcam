@@ -91,8 +91,8 @@ class ViewController: UIViewController {
         self.kisekaeLayer?.frame = self.view.bounds
         // self.kisekaeLayer?.frame.size = water_image.size
         // self.kisekaeLayer?.frame.size = self.view.frame.size
-        self.kisekaeLayer?.contents = UIImage(named: "water")?.cgImage
-        self.kisekaeLayer?.transform = CATransform3DMakeScale(0.045, 0.045, 1);
+        self.kisekaeLayer?.contents = UIImage(named: "Snail and Mantis")?.cgImage
+        //self.kisekaeLayer?.transform = CATransform3DMakeScale(0.045, 0.045, 1.5);
         // self.kisekaeLayer?.contents = water_image
         // プレビューレイヤが、カメラのキャプチャーを縦横比を維持した状態で、表示するように設定
         self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -147,7 +147,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             // Data型をUIImageオブジェクトに変換
-            let uiImage = UIImage(data:imageData)?.composite(image: (UIImage(named:"water")?.scaleImage(scaleSize: 1))!)
+            let uiImage = UIImage(data:imageData)?.composite(image: (UIImage(named:"Snail and Mantis")?.scaleImage(scaleSize: 1.5))!)
             
             // 写真ライブラリに画像を保存
             UIImageWriteToSavedPhotosAlbum(uiImage!, nil,nil,nil)

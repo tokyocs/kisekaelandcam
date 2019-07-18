@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+//My name is harunori
 
 
 class ViewController: UIViewController {
@@ -86,9 +87,13 @@ class ViewController: UIViewController {
         // 指定したAVCaptureSessionでプレビューレイヤを初期化
         self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.kisekaeLayer = CALayer()
+        // let water_image = UIImage(named: "water")!
         self.kisekaeLayer?.frame = self.view.bounds
-        self.kisekaeLayer?.contents = UIImage(named: "water")?.cgImage
-        
+        // self.kisekaeLayer?.frame.size = water_image.size
+        // self.kisekaeLayer?.frame.size = self.view.frame.size
+        self.kisekaeLayer?.contents = UIImage(named: "Snail and Mantis")?.cgImage
+        //self.kisekaeLayer?.transform = CATransform3DMakeScale(0.045, 0.045, 1.5);
+        // self.kisekaeLayer?.contents = water_image
         // プレビューレイヤが、カメラのキャプチャーを縦横比を維持した状態で、表示するように設定
         self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         // プレビューレイヤの表示の向きを設定
@@ -114,6 +119,7 @@ class ViewController: UIViewController {
         settings.isAutoStillImageStabilizationEnabled = true
         // 撮影された画像をdelegateメソッドで処理
         self.photoOutput?.capturePhoto(with: settings, delegate: self as! AVCapturePhotoCaptureDelegate)
+        
     }
     
     
@@ -132,22 +138,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension UIImage {
-    func resize(size _size: CGSize) -> UIImage? {
-        let widthRatio = _size.width / size.width
-        let heightRatio = _size.height / size.height
-        let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
-        
-        let resizedSize = CGSize(width: size.width * ratio, height: size.height * ratio)
-        
-        UIGraphicsBeginImageContextWithOptions(resizedSize, false, 0.0) // 変更
-        draw(in: CGRect(origin: .zero, size: resizedSize))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return resizedImage
-    }
-}
+
 //HELLO MY NAME IS HARUNORI MIYAJI
 
 
@@ -156,14 +147,46 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             // Data型をUIImageオブジェクトに変換
-            let uiImage = UIImage(data: imageData)
+            let uiImage = UIImage(data:imageData)?.composite(image: (UIImage(named:"Snail and Mantis")?.scaleImage(scaleSize: 1.5))!)
+            
             // 写真ライブラリに画像を保存
             UIImageWriteToSavedPhotosAlbum(uiImage!, nil,nil,nil)
         }
     }
 }
 
-
+extension UIImage {
+    
+    func composite(image: UIImage) -> UIImage? {
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        
+        // 画像を真ん中に重ねる
+        let rect = CGRect(x: (self.size.width - image.size.width)/2,
+                          y: (self.size.height - image.size.height)/2,
+                          width: image.size.width,
+                          height: image.size.height)
+        image.draw(in: rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    func reSizeImage(reSize:CGSize)->UIImage {
+        //UIGraphicsBeginImageContext(reSize);
+        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
+        self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height));
+        let reSizeImage:UIImage! = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return reSizeImage;
+    }
+    func scaleImage(scaleSize:CGFloat)->UIImage {
+        let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
+        return reSizeImage(reSize: reSize)
+    }
+}
 
 
 

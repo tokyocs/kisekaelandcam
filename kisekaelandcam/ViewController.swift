@@ -112,6 +112,7 @@ class ViewController: UIViewController {
         settings.isAutoStillImageStabilizationEnabled = true
         // 撮影された画像をdelegateメソッドで処理
         self.photoOutput?.capturePhoto(with: settings, delegate: self as! AVCapturePhotoCaptureDelegate)
+        
     }
     
     
@@ -129,22 +130,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension UIImage {
-    func resize(size _size: CGSize) -> UIImage? {
-        let widthRatio = _size.width / size.width
-        let heightRatio = _size.height / size.height
-        let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
-        
-        let resizedSize = CGSize(width: size.width * ratio, height: size.height * ratio)
-        
-        UIGraphicsBeginImageContextWithOptions(resizedSize, false, 0.0) // 変更
-        draw(in: CGRect(origin: .zero, size: resizedSize))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return resizedImage
-    }
-}
+
 //HELLO MY NAME IS HARUNORI MIYAJI
 
 
@@ -153,14 +139,34 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             // Data型をUIImageオブジェクトに変換
-            let uiImage = UIImage(data: imageData)
+            let uiImage = UIImage(data:imageData)?.composite(image: UIImage(named:"water")!)
+            
             // 写真ライブラリに画像を保存
             UIImageWriteToSavedPhotosAlbum(uiImage!, nil,nil,nil)
         }
     }
 }
 
-
+extension UIImage {
+    
+    func composite(image: UIImage) -> UIImage? {
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        
+        // 画像を真ん中に重ねる
+        let rect = CGRect(x: (self.size.width - image.size.width)/2,
+                          y: (self.size.height - image.size.height)/2,
+                          width: image.size.width,
+                          height: image.size.height)
+        image.draw(in: rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+}
 
 
 

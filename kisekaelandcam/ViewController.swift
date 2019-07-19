@@ -12,9 +12,12 @@ import AVFoundation
 //My name is harunori
 
 
+
 class ViewController: UIViewController {
  
     var audioPlayer: AVAudioPlayer!
+    var haritsukeImage:String!
+    
 
     
     @IBOutlet weak var cameraButton: UIButton!
@@ -91,7 +94,7 @@ class ViewController: UIViewController {
         self.kisekaeLayer?.frame = self.view.bounds
         // self.kisekaeLayer?.frame.size = water_image.size
         // self.kisekaeLayer?.frame.size = self.view.frame.size
-        self.kisekaeLayer?.contents = UIImage(named: "Snail and Mantis")?.cgImage
+        self.kisekaeLayer?.contents = UIImage(named: self.haritsukeImage)?.cgImage
         //self.kisekaeLayer?.transform = CATransform3DMakeScale(0.045, 0.045, 1.5);
         // self.kisekaeLayer?.contents = water_image
         // プレビューレイヤが、カメラのキャプチャーを縦横比を維持した状態で、表示するように設定
@@ -114,23 +117,39 @@ class ViewController: UIViewController {
     
     @IBAction func tuchshutter(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
+        
       
         // カメラの手ぶれ補正
         settings.isAutoStillImageStabilizationEnabled = true
         // 撮影された画像をdelegateメソッドで処理
-        self.photoOutput?.capturePhoto(with: settings, delegate: self as! AVCapturePhotoCaptureDelegate)
+        self.photoOutput?.capturePhoto(with: settings, delegate: self as AVCapturePhotoCaptureDelegate)
         
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        randomImage()
+        
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
         setupPreviewLayer()
         captureSession.startRunning()
         playSound(name: "Seven_Twenty")
+    }
+    func randomImage(){
+        let randomInt = Int.random(in: 0..<3)
+        if (randomInt == 0){
+            self.haritsukeImage = "fuku1"
+        } else if (randomInt == 1){
+            self.haritsukeImage = "fukuG"
+        }
+        else if (randomInt == 2) {
+            self.haritsukeImage = "twoshot"
+        }
+        self.kisekaeLayer?.contents = UIImage(named: self.haritsukeImage)?.cgImage
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -147,11 +166,12 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             // Data型をUIImageオブジェクトに変換
-            let uiImage = UIImage(data:imageData)?.composite(image: (UIImage(named:"Snail and Mantis")?.scaleImage(scaleSize: 1.5))!)
+            let uiImage = UIImage(data:imageData)?.composite(image: (UIImage(named:self.haritsukeImage)?.scaleImage(scaleSize: 1.5))!)
             
             // 写真ライブラリに画像を保存
             UIImageWriteToSavedPhotosAlbum(uiImage!, nil,nil,nil)
         }
+        randomImage()
     }
 }
 

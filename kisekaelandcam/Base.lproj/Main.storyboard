@@ -53,13 +53,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oi2-1I-bUN">
-                                <rect key="frame" x="124" y="728" width="134" height="130"/>
+                                <rect key="frame" x="124" y="730" width="134" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="黒い服に着せ替え！">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchKuro:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U11-sZ-W5x"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtV-pD-P7A">
                                 <rect key="frame" x="257" y="606" width="132" height="124"/>
@@ -67,12 +70,18 @@
                                 <color key="backgroundColor" red="0.36090456710000002" green="0.75122411570000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <state key="normal" title="青い服に着せ替え！"/>
+                                <connections>
+                                    <action selector="touchAo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3jQ-5g-gKu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL8-2h-Gxm">
                                 <rect key="frame" x="124" y="606" width="134" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.28979504264044953" green="1" blue="0.75578796810116033" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="I love❤️new york"/>
+                                <connections>
+                                    <action selector="tuchNewyork:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Wp-li-tPP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7O-fj-9QT">
                                 <rect key="frame" x="419" y="665" width="128" height="124"/>
@@ -83,10 +92,16 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZn-jw-dDb">
                                 <rect key="frame" x="257" y="730" width="132" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.23834105070113606" green="0.23466010138593096" blue="0.27789022020725385" alpha="0.90204665492957736" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="ジーンズ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="0.38315804472896942" green="0.61091271338820463" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="撮影！">
+                                    <color key="titleColor" red="0.38315804469999998" green="0.61091271339999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.85068446503759665" green="1" blue="0.17692732159120073" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tuchshutter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Dt-Dv-56d"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

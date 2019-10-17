@@ -79,10 +79,22 @@ class ViewController: UIViewController {
         }
     
     // 必要なライブラリをインポートします
-   
     
-    @IBAction func kisekae(_ sender: Any) {
+    @IBAction func touchKuro(_ sender: Any) {
+        self.haritsukeImage = "fuku1"
+        self.kisekaeLayer?.contents = UIImage(named: self.haritsukeImage)?.cgImage
     }
+    
+    @IBAction func tuchNewyork(_ sender: Any) {
+        self.haritsukeImage = "ILOVENEWYORK"
+        self.kisekaeLayer?.contents = UIImage(named: self.haritsukeImage)?.cgImage
+    }
+    
+    @IBAction func touchAo(_ sender: Any) {
+        self.haritsukeImage = "fukuG"
+        self.kisekaeLayer?.contents = UIImage(named: self.haritsukeImage)?.cgImage
+    }
+    
     
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
     var kisekaeLayer : CALayer?
@@ -174,6 +186,10 @@ extension ViewController: AVCapturePhotoCaptureDelegate{
         randomImage()
     }
 }
+
+
+
+
 
 extension UIImage {
     

@@ -94,6 +94,20 @@ class ViewController: UIViewController {
         self.haritsukeImage = "fukuG"
         self.kisekaeLayer?.contents = UIImage(named: self.haritsukeImage)?.cgImage
     }
+   
+    @IBAction func NEWYORKYANKY(_ sender: Any) {
+        self.haritsukeImage = "NEWYORK yannki-"
+        self.kisekaeLayer?.contents = UIImage(named:
+            self.haritsukeImage)?.cgImage
+    }
+    
+    
+    @IBAction func Nwawoko1(_ sender: Any) {
+        self .haritsukeImage = "Nawokosuka"
+        self.kisekaeLayer?.contents = UIImage(named:
+            self.haritsukeImage)?.cgImage
+    }
+    
     
     
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
